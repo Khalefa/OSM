@@ -1,3 +1,4 @@
+package osm;
 
 public class TPConstants {
     public static enum PROJ {

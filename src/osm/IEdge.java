@@ -1,3 +1,4 @@
+package osm;
 
 import java.io.Serializable;
 
