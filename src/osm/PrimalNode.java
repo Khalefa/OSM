@@ -12,6 +12,7 @@ public final class PrimalNode implements INode {
 	private final int id;
 	private long osmId = -1;
 	public  PrimalEdge dual=null;
+	
 
 	public PrimalNode(int id) {
 		this.id = id;
