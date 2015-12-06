@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="OSM">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="OSM.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/gson-2.2.4.jar"/>
+        <pathelement location="lib/osm/aopalliance-1.0.jar"/>
+        <pathelement location="lib/osm/commons-codec-1.7.jar"/>
+        <pathelement location="lib/osm/commons-compress-1.4.1.jar"/>
+        <pathelement location="lib/osm/commons-dbcp-1.4.jar"/>
+        <pathelement location="lib/osm/commons-logging-1.1.1.jar"/>
+        <pathelement location="lib/osm/commons-pool-1.5.4.jar"/>
+        <pathelement location="lib/osm/jpf-1.5.jar"/>
+        <pathelement location="lib/osm/mysql-connector-java-5.1.21.jar"/>
+        <pathelement location="lib/osm/netty-3.2.7.Final.jar"/>
+        <pathelement location="lib/osm/osmosis-apidb-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-areafilter-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-core-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-dataset-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-extract-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-hstore-jdbc-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-osm-binary-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-pbf-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-pbf2-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-pgsimple-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-pgsnapshot-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-replication-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-replication-http-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-set-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-tagfilter-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-tagtransform-0.43.1.jar"/>
+        <pathelement location="lib/osm/osmosis-xml-0.43.1.jar"/>
+        <pathelement location="lib/osm/plexus-classworlds-2.4.jar"/>
+        <pathelement location="lib/osm/postgis-jdbc-1.3.3.jar"/>
+        <pathelement location="lib/osm/postgresql-9.1-901-1.jdbc4.jar"/>
+        <pathelement location="lib/osm/protobuf-java-2.4.1.jar"/>
+        <pathelement location="lib/osm/spring-aop-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/spring-asm-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/spring-beans-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/spring-context-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/spring-core-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/spring-expression-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/spring-jdbc-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/spring-tx-3.1.2.RELEASE.jar"/>
+        <pathelement location="lib/osm/stax2-api-3.1.1.jar"/>
+        <pathelement location="lib/osm/woodstox-core-lgpl-4.1.4.jar"/>
+        <pathelement location="lib/osm/xercesImpl-2.9.1.jar"/>
+        <pathelement location="lib/osm/xz-1.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="OSM.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Build">
+        <java classname="Build" failonerror="true" fork="yes">
+            <jvmarg line="-Xmx1g"/>
+            <classpath refid="OSM.classpath"/>
+        </java>
+    </target>
+</project>

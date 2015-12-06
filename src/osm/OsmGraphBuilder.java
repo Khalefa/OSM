@@ -71,7 +71,9 @@ public class OsmGraphBuilder extends GraphBuilder {
                 // node
                 if (entity instanceof Node) {
                     Node osmNode = (Node) entity;
-                    INode graphNode = graph.addNode(get2Dcoord(osmNode));
+                  //  get2Dcoord(osmNode);
+                    INode graphNode = graph.addNode();
+                    graphNode.setOsmID(osmNode.getId());
                     graph.registerNodeOsmID(osmNode.getId(), graphNode);
 
                 }
@@ -107,9 +109,9 @@ public class OsmGraphBuilder extends GraphBuilder {
                             if (start == null || end == null)
                                 continue;
                             if (forward)
-                                graph.addEdge(start, end, DEFAULT_SPEED);
+                                graph.addEdge(start, end);
                             if (backward)
-                                graph.addEdge(end, start, DEFAULT_SPEED);
+                                graph.addEdge(end, start);
                             prev = curr;
                         }
                     }

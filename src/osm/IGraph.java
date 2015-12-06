@@ -7,22 +7,23 @@ import java.util.List;
 
 /** Maintains server state. **/
 public interface IGraph extends Serializable {
-
-    INode addNode(Point2D coord);
-    INode addNode(int id, Point2D coord);
-
+   
+   // INode addNode(int id, Point2D coord);
+    INode addNode(int id);
+    INode addNode(INode node);
+ 
+	 INode addNode();
+		
+    
     List<INode> getNodes();
     INode getNode(int nextInt);
 
-    IEdge addEdge(INode start, INode end, float maxSpeedMpS);
-    IEdge addEdge(int id, INode start, INode end, float maxSpeedMpS);
-
+    IEdge addEdge(INode start, INode end);
+    IEdge addEdge(int id, INode start, INode endS);
+    
     List<IEdge> getEdges();
 
-    IGraph removeZeroDegreeNode();
-
-    Rectangle2D getBounds();
-
+ 
     INode getNodeFromOsmID(long osmID);
 
     void registerNodeOsmID(long osmID, INode INode);
