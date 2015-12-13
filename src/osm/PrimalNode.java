@@ -12,14 +12,14 @@ public final class PrimalNode implements INode {
 	private final int id;
 	private long osmId = -1;
 	public  PrimalEdge dual=null;
-	
+	private Point2D coord;
 
 	public PrimalNode(int id) {
 		this.id = id;
 	}
 
 	public PrimalNode() {
-		this(max_id++);
+		this(max_id++); 
 	}
 
 	@Override
@@ -61,4 +61,12 @@ public final class PrimalNode implements INode {
 	public IEdge getDual() {
 		return dual;
 	}
-}
+
+	@Override
+	public Point2D getCoordinates() {
+		return coord;
+	}
+	public void setCoordinates(Point2D cord){
+		coord=cord;
+	}
+	}

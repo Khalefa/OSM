@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+
 public class PrimalGraph implements IGraph {
 
 	private final List<INode> nodes = new ArrayList<INode>();
@@ -17,12 +18,32 @@ public class PrimalGraph implements IGraph {
 	private Map<Long, INode> osmIdMap = new HashMap<Long, INode>(7000000);
 
 	@Override
+	public Rectangle2D getBounds() {
+		double l = Double.POSITIVE_INFINITY;
+		double r = Double.NEGATIVE_INFINITY;
+		double u = Double.POSITIVE_INFINITY;
+		double d = Double.NEGATIVE_INFINITY;
+		for (INode n : getNodes()) {
+			if (n.getCoordinates().getX() < l)
+				l = n.getCoordinates().getX();
+			if (n.getCoordinates().getX() > r)
+				r = n.getCoordinates().getX();
+			if (n.getCoordinates().getY() < u)
+				u = n.getCoordinates().getY();
+			if (n.getCoordinates().getY() > d)
+				d = n.getCoordinates().getY();
+		}
+		return new Rectangle2D.Double(l, u, r - l, d - u);
+	}
+
+	@Override
 	public INode addNode(int id) {
 		PrimalNode node = new PrimalNode(id);
 		nodes.add(node);
 		id2Node.put(node.getID(), node);
 		return node;
 	}
+
 	@Override
 	public INode addNode() {
 		PrimalNode node = new PrimalNode();
@@ -30,6 +51,16 @@ public class PrimalGraph implements IGraph {
 		id2Node.put(node.getID(), node);
 		return node;
 	}
+
+	@Override
+	public INode addNode(Point2D cord) {
+		PrimalNode node = new PrimalNode();
+		nodes.add(node);
+		id2Node.put(node.getID(), node);
+		node.setCoordinates(cord);
+		return node;
+	}
+
 	@Override
 	public INode addNode(INode node) {
 		nodes.add(node);
@@ -88,7 +119,5 @@ public class PrimalGraph implements IGraph {
 		osmIdMap.put(osmID, node);
 
 	}
-
-	
 
 }

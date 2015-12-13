@@ -71,8 +71,8 @@ public class OsmGraphBuilder extends GraphBuilder {
                 // node
                 if (entity instanceof Node) {
                     Node osmNode = (Node) entity;
-                  //  get2Dcoord(osmNode);
-                    INode graphNode = graph.addNode();
+                    Point2D cord=get2Dcoord(osmNode);
+                    INode graphNode = graph.addNode(cord);
                     graphNode.setOsmID(osmNode.getId());
                     graph.registerNodeOsmID(osmNode.getId(), graphNode);
 

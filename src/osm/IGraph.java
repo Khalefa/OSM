@@ -8,7 +8,7 @@ import java.util.List;
 /** Maintains server state. **/
 public interface IGraph extends Serializable {
    
-   // INode addNode(int id, Point2D coord);
+   INode addNode(Point2D coord);
     INode addNode(int id);
     INode addNode(INode node);
  
@@ -22,6 +22,8 @@ public interface IGraph extends Serializable {
     IEdge addEdge(int id, INode start, INode endS);
     
     List<IEdge> getEdges();
+    
+     Rectangle2D getBounds();
 
  
     INode getNodeFromOsmID(long osmID);
